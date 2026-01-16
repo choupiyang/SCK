@@ -1,0 +1,334 @@
+/* ========================================
+   单张图片 OCR - 孟菲斯风格
+   Single Image OCR - Memphis Style
+   ======================================== */
+
+.single-ocr {
+  width: 100%;
+  position: relative;
+}
+
+.upload-section {
+  background: var(--color-white);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 150px;
+  height: 150px;
+  background: var(--color-accent-2);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 8s ease-in-out infinite;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-xl);
+  border: var(--border-thick);
+  background: var(--color-gray-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-label::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 77, 0, 0.05) 10px,
+    rgba(255, 77, 0, 0.05) 20px
+  );
+  transition: left 0.5s ease;
+}
+
+.upload-label:hover::after {
+  left: 100%;
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-lg);
+  filter: drop-shadow(4px 4px 0 var(--color-black));
+}
+
+.upload-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.upload-hint {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Preview Section */
+.preview-section {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: var(--border-thick);
+}
+
+.preview-image-wrapper {
+  position: relative;
+  margin-bottom: var(--space-lg);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard-lg);
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  display: block;
+}
+
+.remove-btn {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-error);
+  color: var(--color-white);
+  font-size: 1.5rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-medium);
+  box-shadow: var(--shadow-hard);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: var(--color-error);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.ocr-btn {
+  width: 100%;
+  padding: var(--space-lg);
+  font-size: 1.1rem;
+}
+
+/* Error Message */
+.error-message {
+  background: var(--color-error);
+  color: var(--color-white);
+  padding: var(--space-md) var(--space-lg);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-hard);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.error-icon {
+  font-size: 1.75rem;
+  filter: drop-shadow(2px 2px 0 var(--color-black));
+}
+
+/* Result Section */
+.result-section {
+  background: var(--color-white);
+  padding: var(--space-xl);
+  margin-top: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.result-section::before {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 200px;
+  height: 200px;
+  background: var(--color-accent-1);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: var(--border-thick);
+}
+
+.result-header h3 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.result-header h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--color-primary);
+}
+
+.result-actions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.action-btn {
+  padding: var(--space-md) var(--space-lg);
+  font-size: 0.95rem;
+  min-width: 120px;
+}
+
+/* 样式切换器容器 */
+.style-switcher-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+
+.style-switcher {
+  display: flex;
+  gap: var(--space-sm);
+  background: var(--color-white);
+  padding: var(--space-xs);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.style-btn {
+  border: none;
+  background: transparent;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.style-btn:hover {
+  background: var(--color-bg-light);
+  color: var(--color-primary);
+}
+
+.style-btn.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.markdown-content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.markdown-capture-area {
+  background: var(--color-white);
+  padding: var(--space-xl);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .upload-section {
+    padding: var(--space-lg);
+  }
+
+  .upload-label {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .upload-icon {
+    font-size: 3rem;
+  }
+
+  .upload-text {
+    font-size: 1.1rem;
+  }
+
+  .upload-hint {
+    font-size: 0.85rem;
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .result-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+
+  .result-header h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-section {
+    padding: var(--space-md);
+  }
+
+  .upload-label {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .preview-image {
+    max-height: 300px;
+  }
+}

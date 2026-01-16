@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(set:*)",
+      "Bash(node server/index.js)",
+      "Bash(dir:*)",
+      "Bash(node:*)",
+      "Bash(timeout:*)",
+      "Bash(npm run dev)",
+      "Bash(taskkill:*)",
+      "Bash(cmd:*)",
+      "Bash(powershell:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
